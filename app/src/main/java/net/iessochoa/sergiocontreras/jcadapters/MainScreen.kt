@@ -38,6 +38,7 @@ fun MainPreview() {
 fun MainView(modifier: Modifier) {
     val countries = listOf("Spain", "France", "Germany", "Italy", "United Kingdom")
     val friends = listOf("Sergio", "Javier", "Pablo", "Sara", "Daniel", "Natalia")
+    val foods = getAllFoods()
 
     Column(modifier = modifier.padding(dimensionResource(R.dimen.common_padding_default))) {
         SpinnerPan(
@@ -47,13 +48,20 @@ fun MainView(modifier: Modifier) {
             items = countries
         )
 
-        Text(text = "Amigos: ",
+//        Text(text = "Amigos: ",
+//        modifier = Modifier.padding(top=dimensionResource(R.dimen.common_padding_default)))
+//        Column(Modifier.verticalScroll(rememberScrollState())) {
+//            friends.forEach { friend ->
+//                ItemListBasic(friend)
+//            }
+//
+//        }
+
+        Text(text = "Comidas: ",
         modifier = Modifier.padding(top=dimensionResource(R.dimen.common_padding_default)))
-
-
         Column(Modifier.verticalScroll(rememberScrollState())) {
-            friends.forEach { friend ->
-                ItemListBasic(friend)
+            foods.map { it.name }.forEach { food ->
+                ItemListBasic(food)
             }
 
         }
