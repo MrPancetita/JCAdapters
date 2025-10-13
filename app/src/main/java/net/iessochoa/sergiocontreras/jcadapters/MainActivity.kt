@@ -20,28 +20,18 @@ class MainActivity : ComponentActivity() {
         setContent {
             JCAdaptersTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    MainView(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
+@Preview(showSystemUi = true)
 @Composable
-fun GreetingPreview() {
+private fun LocalPreview() {
     JCAdaptersTheme {
-        Greeting("Android")
+        MainPreview()
     }
 }

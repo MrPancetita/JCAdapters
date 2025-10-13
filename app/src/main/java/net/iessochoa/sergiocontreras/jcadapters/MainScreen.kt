@@ -1,0 +1,46 @@
+package net.iessochoa.sergiocontreras.jcadapters
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import net.iessochoa.sergiocontreras.jcadapters.ui.components.SpinnerPan
+import net.iessochoa.sergiocontreras.jcadapters.ui.theme.JCAdaptersTheme
+
+/**
+ * Project: JC Adapters
+ * From: net.iessochoa.sergiocontreras.jcadapters
+ * Created by: Contr
+ * On: 13/10/2025 at 12:57
+ * Creado en Settings -> Editor -> File and Code Templates
+ */
+
+@Preview(showBackground = true)
+@Composable
+fun MainPreview() {
+    JCAdaptersTheme {
+        MainView(Modifier
+            .padding(top=24.dp))
+    }
+}
+
+
+
+@Composable
+fun MainView(modifier: Modifier) {
+    val countries = listOf("Spain", "France", "Germany", "Italy", "United Kingdom")
+
+    Column(modifier = modifier.padding(dimensionResource(R.dimen.common_padding_default))) {
+        SpinnerPan(
+            Modifier
+                .fillMaxWidth()
+                .padding(top = dimensionResource(R.dimen.common_padding_default)),
+            label = "Country",
+            items = countries
+        )
+    }
+}
