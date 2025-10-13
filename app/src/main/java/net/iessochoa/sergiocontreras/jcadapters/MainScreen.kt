@@ -3,11 +3,15 @@ package net.iessochoa.sergiocontreras.jcadapters
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import net.iessochoa.sergiocontreras.jcadapters.ui.components.ItemListBasic
 import net.iessochoa.sergiocontreras.jcadapters.ui.components.SpinnerPan
 import net.iessochoa.sergiocontreras.jcadapters.ui.theme.JCAdaptersTheme
 
@@ -33,14 +37,25 @@ fun MainPreview() {
 @Composable
 fun MainView(modifier: Modifier) {
     val countries = listOf("Spain", "France", "Germany", "Italy", "United Kingdom")
+    val friends = listOf("Sergio", "Javier", "Pablo", "Sara", "Daniel", "Natalia")
 
     Column(modifier = modifier.padding(dimensionResource(R.dimen.common_padding_default))) {
         SpinnerPan(
             Modifier
-                .fillMaxWidth()
-                .padding(top = dimensionResource(R.dimen.common_padding_default)),
+                .fillMaxWidth(),
             label = "Country",
             items = countries
         )
+
+        Text(text = "Amigos: ",
+        modifier = Modifier.padding(top=dimensionResource(R.dimen.common_padding_default)))
+
+
+        Column(Modifier.verticalScroll(rememberScrollState())) {
+            friends.forEach { friend ->
+                ItemListBasic(friend)
+            }
+
+        }
     }
 }
