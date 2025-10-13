@@ -4,13 +4,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import net.iessochoa.sergiocontreras.jcadapters.R
 import net.iessochoa.sergiocontreras.jcadapters.ui.theme.JCAdaptersTheme
 import net.iessochoa.sergiocontreras.jcadapters.ui.theme.Typography
@@ -25,16 +30,28 @@ import net.iessochoa.sergiocontreras.jcadapters.ui.theme.Typography
 
 @Preview(showBackground = true)
 @Composable
-private fun LocalPreview() {
+private fun BasicPreview() {
     JCAdaptersTheme {
         ItemListBasic(text = "Lorem Ipsum")
     }
 }
 
 
+@Preview(showBackground = true)
+@Composable
+private fun AdvancedPreview() {
+    JCAdaptersTheme {
+        ItemListAdvance("MainText", "more text here")
+    }
+}
+
+
 
 @Composable
-fun ItemListBasic(text:String, modifier: Modifier = Modifier) {
+fun ItemListBasic(
+    text: String,
+    modifier: Modifier = Modifier
+) {
     Column {
         Text(text,
             modifier = modifier
@@ -47,3 +64,32 @@ fun ItemListBasic(text:String, modifier: Modifier = Modifier) {
 
     }
 }
+
+@OptIn(ExperimentalGlideComposeApi::class)
+@Composable
+fun ItemListAdvance(
+    maintText:String,
+    secondaryText:String,
+    imgUrl: String = ""
+) {
+    ListItem(
+        headlineContent = {
+            Text(
+                text = maintText,
+                style = Typography.headlineMedium
+            )
+        },
+        leadingContent = {
+            GlideImage(
+                model = imgUrl,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.size(dimensionResource(R.dimen.img_item_list))
+
+            )
+        }
+    )
+
+
+}
+
