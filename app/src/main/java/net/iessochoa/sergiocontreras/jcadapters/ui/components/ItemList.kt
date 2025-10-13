@@ -68,14 +68,14 @@ fun ItemListBasic(
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun ItemListAdvance(
-    maintText:String,
+    mainText:String,
     secondaryText:String,
     imgUrl: String = ""
 ) {
     ListItem(
         headlineContent = {
             Text(
-                text = maintText,
+                text = mainText,
                 style = Typography.headlineMedium
             )
         },
