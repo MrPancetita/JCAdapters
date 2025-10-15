@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
@@ -83,50 +84,59 @@ fun ItemListAdvance(
     mainText:String,
     secondaryText:String,
     modifier: Modifier = Modifier,
-    imgUrl: String = ""
+    imgUrl: String = "",
+    icon: ImageVector? = null,
+    overlineText: String = "",
+    showDivider: Boolean = false
 ) {
-    ListItem(
-        modifier = modifier,
-        headlineContent = {
-            Text(
-                text = mainText,
-                style = Typography.headlineMedium
-            )
-        },
-        supportingContent = {
-            Text(
-                text = secondaryText,
-                style = Typography.bodyLarge,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-        },
-        leadingContent = {
-            GlideImage(
-                model = imgUrl,
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(dimensionResource(R.dimen.img_item_list))
-                    .clip(RoundedCornerShape(dimensionResource(R.dimen.common_padding_default)))
-                    .border(
-                        BorderStroke(
-                            width = dimensionResource(R.dimen.common_padding_nano),
-                            color = colorResource(R.color.blue_200)
+    Column {
+        ListItem(
+            modifier = modifier,
+            headlineContent = {
+                Text(
+                    text = mainText,
+                    style = Typography.headlineMedium
+                )
+            },
+            supportingContent = {
+                Text(
+                    text = secondaryText,
+                    style = Typography.bodyLarge,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+            },
+            leadingContent = {
+                GlideImage(
+                    model = imgUrl,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(dimensionResource(R.dimen.img_item_list))
+                        .clip(RoundedCornerShape(dimensionResource(R.dimen.common_padding_default)))
+                        .border(
+                            BorderStroke(
+                                width = dimensionResource(R.dimen.common_padding_nano),
+                                color = colorResource(R.color.blue_200)
+                            ),
+                            shape = RoundedCornerShape(dimensionResource(R.dimen.common_padding_default))
                         ),
-                        shape = RoundedCornerShape(dimensionResource(R.dimen.common_padding_default))
-                    ),
-            )
-            //Faltaría el cache strategy que en esta del Glide parece que está bug
+                )
+                //Faltaría el cache strategy que en esta del Glide parece que está bug
 
-        },
-        trailingContent = {
-            Icon(Icons.Default.Info, contentDescription = null)
-        },
-        overlineContent = {
-            Text("Restaurante Feliz")
-        }
-    )
+            },
+            trailingContent = {
+                icon?.let {
+                    Icon(imageVector = icon, contentDescription = null)
+                    //Así solo se muestra si no es null
+                }
+            },
+            overlineContent = {
+                if (overlineText.isNotEmpty()) Text(overlineText)
+            }
+        )
+        if (showDivider) HorizontalDivider()
+    }
 
 
 }

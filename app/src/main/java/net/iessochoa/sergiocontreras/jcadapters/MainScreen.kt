@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -42,10 +44,11 @@ fun MainView(modifier: Modifier, onSelectedItem: (Food) -> Unit) {
     val friends = listOf("Sergio", "Javier", "Pablo", "Sara", "Daniel", "Natalia")
     val foods = getAllFoods()
 
-    Column(modifier = modifier.padding(dimensionResource(R.dimen.common_padding_default))) {
+    Column(modifier = modifier.padding(vertical = dimensionResource(R.dimen.common_padding_default))) {
         SpinnerPan(
             Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(horizontal = dimensionResource(R.dimen.common_padding_default)),
             label = "Country",
             items = countries
         )
@@ -60,7 +63,12 @@ fun MainView(modifier: Modifier, onSelectedItem: (Food) -> Unit) {
 //        }
 
         Text(text = "Comidas: ",
-        modifier = Modifier.padding(top=dimensionResource(R.dimen.common_padding_default)))
+        modifier = Modifier.padding(
+            top = dimensionResource(R.dimen.common_padding_default),
+            start = dimensionResource(R.dimen.common_padding_default),
+            end = dimensionResource(R.dimen.common_padding_default)
+
+        ))
         LazyColumn {
             items(foods.size) { index ->
                 val food = foods[index]
@@ -70,7 +78,10 @@ fun MainView(modifier: Modifier, onSelectedItem: (Food) -> Unit) {
                     },
                     mainText = food.name,
                     secondaryText = food.description,
-                    imgUrl = food.imgUrl
+                    imgUrl = food.imgUrl,
+                    icon = Icons.Default.Warning,
+                    overlineText = food.createdBy,
+                    showDivider = true,
                 )
             }
 
