@@ -1,6 +1,7 @@
 package net.iessochoa.sergiocontreras.jcadapters
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -20,7 +21,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             JCAdaptersTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainView(modifier = Modifier.padding(innerPadding))
+                    MainView(modifier = Modifier.padding(innerPadding)) { food ->
+                         Toast.makeText(this, food.name, Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }

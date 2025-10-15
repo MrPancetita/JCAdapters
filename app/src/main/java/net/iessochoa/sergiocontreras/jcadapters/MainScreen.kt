@@ -1,5 +1,6 @@
 package net.iessochoa.sergiocontreras.jcadapters
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -7,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,14 +29,15 @@ import net.iessochoa.sergiocontreras.jcadapters.ui.theme.JCAdaptersTheme
 fun MainPreview() {
     JCAdaptersTheme {
         MainView(Modifier
-            .padding(top=24.dp))
+            .padding(top=24.dp),
+            onSelectedItem = {})
     }
 }
 
 
 
 @Composable
-fun MainView(modifier: Modifier) {
+fun MainView(modifier: Modifier, onSelectedItem: (Food) -> Unit) {
     val countries = listOf("Spain", "France", "Germany", "Italy", "United Kingdom")
     val friends = listOf("Sergio", "Javier", "Pablo", "Sara", "Daniel", "Natalia")
     val foods = getAllFoods()
@@ -62,6 +65,9 @@ fun MainView(modifier: Modifier) {
             items(foods.size) { index ->
                 val food = foods[index]
                 ItemListAdvance(
+                    modifier = Modifier.clickable {
+                        onSelectedItem(food)
+                    },
                     mainText = food.name,
                     secondaryText = food.description,
                     imgUrl = food.imgUrl

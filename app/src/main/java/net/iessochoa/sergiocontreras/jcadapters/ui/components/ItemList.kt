@@ -82,9 +82,11 @@ fun ItemListBasic(
 fun ItemListAdvance(
     mainText:String,
     secondaryText:String,
+    modifier: Modifier = Modifier,
     imgUrl: String = ""
 ) {
     ListItem(
+        modifier = modifier,
         headlineContent = {
             Text(
                 text = mainText,
