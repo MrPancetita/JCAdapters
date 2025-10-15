@@ -69,7 +69,7 @@ fun ItemListBasic(
         Text(text,
             modifier = modifier
                 .fillMaxWidth() //Sin esto es scroll sería solo posible encima del texto... muy raro.
-                .padding(vertical = dimensionResource(id = R.dimen.common_padding_default)),
+                .padding(dimensionResource(id = R.dimen.common_padding_default)),
             style = Typography.headlineSmall
         )
 
