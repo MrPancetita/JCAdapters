@@ -1,5 +1,9 @@
 package net.iessochoa.sergiocontreras.jcadapters
 
+fun getAllCountries() = listOf("Spain", "France", "Germany", "Italy", "United Kingdom")
+
+fun getAllFriends() = listOf("Sergio", "Javier", "Pablo", "Sara", "Daniel", "Natalia")
+
 fun getAllFoods() = listOf(
     Food(name = "Hamburguesa",
         description = "Hamburguesa de ternera con queso, lechuga, tomate y cebolla",
