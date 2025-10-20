@@ -57,7 +57,7 @@ fun DynamicSelectTextField(
             },
             colors = OutlinedTextFieldDefaults.colors(), // Colores por defecto
             modifier = Modifier
-                .menuAnchor(MenuAnchorType.PrimaryEditable, false) // Ancla el menú al TextField
+                .menuAnchor(MenuAnchorType.PrimaryEditable, true) // Ancla el menú al TextField
                 .fillMaxWidth()
         )
         // El menú desplegable en sí
