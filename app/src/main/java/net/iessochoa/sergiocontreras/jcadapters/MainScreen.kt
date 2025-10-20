@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import net.iessochoa.sergiocontreras.jcadapters.ui.components.EjemploDropdownMenu
 import net.iessochoa.sergiocontreras.jcadapters.ui.components.ItemListAdvance
 import net.iessochoa.sergiocontreras.jcadapters.ui.components.ItemListBasic
+import net.iessochoa.sergiocontreras.jcadapters.ui.components.RatingBar
 import net.iessochoa.sergiocontreras.jcadapters.ui.components.SpinnerPan
 import net.iessochoa.sergiocontreras.jcadapters.ui.theme.JCAdaptersTheme
 
@@ -62,6 +63,8 @@ fun MainView(modifier: Modifier, onSelectedItem: (Food) -> Unit) {
         stringResource(R.string.section_foods)
     )
     var selectedIndex by remember { mutableIntStateOf(0) }
+
+    var rating by remember { mutableIntStateOf(3) } // Inicializado en 3
 
     Column(modifier = modifier.padding(vertical = dimensionResource(R.dimen.common_padding_default))) {
         SpinnerPan(
@@ -127,5 +130,9 @@ fun MainView(modifier: Modifier, onSelectedItem: (Food) -> Unit) {
             }
         }
         EjemploDropdownMenu()
+        RatingBar(
+            currentRating = rating,
+            onRatingChanged = { newRating -> rating = newRating }
+        )
     }
 }
